@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ember-routing</title>
+    <meta name="description" content="Example of a basic Ember.js application with a Router" />
+    <meta name="author" content="dWb ( twitter: @willcode2surf )" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+      body {
+        padding-top: 60px; /* common bootstrap shim */
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+  </head>
+  <body>
+    <script type="text/x-handlebars" data-template-name="application">
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="brand" href="">EmberBase</a>
+            <div class="nav">
+              <ul class="nav">
+                <li class="home" {{bindAttr class="isHome:active"}}><a {{action "doHome"}}>Home</a></li>
+                <li class="divider-vertical"></li>
+                <li class="sections" {{bindAttr class="isSections:active"}}><a {{action "doSections"}}>Sections</a></li>
+                <li class="divider-vertical"></li>
+                <li class="items" {{bindAttr class="isItems:active"}}><a {{action "doItems"}}>Items</a></li>
+              </ul>
+			    <ul class="nav pull-right">
+	            <li><a {{action "showSettings" on="click"}}><i class="icon-cog icon-white"></i></a></li>
+	            <!--
+	            <li><a {{action "showUserConfig" on="click"}}><i class="icon-user icon-white"></i></a></li>
+	            -->
+	            <li><a {{action "refresh" on="click"}}><i class="icon-refresh icon-white"></i></a></li>
+	          </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        {{outlet}}
+      </div>
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="home">
+      <div class="hero-unit">
+        <h1>EmberJS Routing</h1>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="sections">
+      <header class="jumbotron subhead">
+        <h1>Nesting</h1>
+        <p>dynamically nested Views using <code>&#123;&#123;outlet&#125;&#125;</code> handlebars helpers.</p>
+        <div class="subnav">
+          <ul class ="nav nav-pills">
+            <li class="sectionA" {{bindAttr class="isSectionA:active"}}><a {{action "doSectionA"}}>EmberJs</a></li>
+            <li class="sectionB" {{bindAttr class="isSectionB:active"}}><a {{action "doSectionB"}}>Git</a></li>
+            <li class="sectionC" {{bindAttr class="isSectionC:active"}}><a {{action "doSectionC"}}>JsFiddle</a></li>
+            <li class="sectionD" {{bindAttr class="isSectionD:active"}}><a {{action "doSectionD"}}>Other</a></li>
+          </ul>
+        </div>
+      </header>
+      {{outlet}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="sectionA">
+      <section>
+        <h1>EmberJs Resources</h1>
+        <p>EmberJs has a website packed with very detailed Guides, Quickstart, and Solid API references.</p>
+      </section>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="sectionB">
+     <section>
+        <h1>Git Resources</h1>
+        <p>Github has some emberJs projects I have started as well as others that have various other approaches.</p>
+        <p>Gitlab will soon have a base project to play with other than this routing sample.</p>
+      </section>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="sectionC">
+      <section>
+        <h1>JsFiddle.net</h1>
+        <p>IF YOU ARE NOT USING jSfIDDLE then maybe we need to talk about sharpening up some JS skills and making life MOSIMPLE</p>
+      </section>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="sectionD">
+      <section>
+        <h1>I.CANT.BELIEVE</h1>
+        <h2>you made it to the last boring tab...</h2>
+      </section>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="items">
+      <header class="jumbotron subhead">
+        <h1>Route Parameters</h1>
+        <p>Named parameters can be extracted from routes defined with <code>:property_name</code> segments.</p>
+      </header>
+      <ul class="nav nav-tabs nav-stacked">
+        {{#each item in content}}
+          <li><a {{action "doItem" context="item"}}>{{item.title}}</a></li>
+        {{/each}}
+      </ul>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="item">
+      <h1>{{title}}</h1>
+      {{{description}}}
+    </script>
+
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/jquery.lorem.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+    <script src="js/libs/handlebars.js"></script>
+	<script src='http://jquery-json.googlecode.com/files/jquery.json-2.2.min.js'></script>
+	<script src='http://datejs.googlecode.com/svn/trunk/build/date.js'></script>
+	<script src="js/libs/socket.io.js"></script>
+    <script src="js/libs/ember.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
